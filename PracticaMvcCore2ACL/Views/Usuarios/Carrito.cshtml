@@ -1,0 +1,49 @@
+﻿@model List<Libros>
+@{
+    decimal precioTotal = 0;
+}
+<h1>Tu Carrito</h1>
+<hr />
+@if (Model != null)
+{
+    <table class="table table-bordered ">
+        <thead>
+            <th></th>
+            <th>Portada</th>
+            <th>Libro</th>
+            <th>Precio</th>
+        </thead>
+        <tbody>
+            @foreach (Libros libro in Model)
+            {
+                precioTotal += libro.Precio;
+                <tr>
+                    <td>
+                        <a
+                        asp-controller="Usuarios" asp-action="QuitarDelCarro"
+                           asp-route-id="@libro.IdLibro" class="btn btn-danger">
+                            Eliminar        
+                        </a>
+                    </td>
+                    <td>
+                        <img src="~/images/@libro.Portada" style="width:100px;height:auto"/>
+                    </td>
+                    <td>@libro.Titulo</td>
+                    <td>@libro.Precio €</td>
+                </tr>
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total: @precioTotal €</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr />
+    <a asp-controller="Usuarios" asp-action="ComprarCarrito" class="btn btn-success">
+        Comprar
+    </a>
+
+}

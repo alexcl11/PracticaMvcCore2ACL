@@ -1,0 +1,18 @@
+﻿@model List<Libros>
+
+<h1>Libros del Genero: @ViewData["GENERO"]</h1>
+<hr />
+@if (Model != null)
+{
+    foreach (Libros libro in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src="~/images/@libro.Portada" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@libro.Titulo - @libro.Precio €</h5>
+                <a asp-controller="Libros" asp-action="Details"
+                asp-route-id="@libro.IdLibro" class="btn btn-primary">Detalles</a>
+            </div>
+        </div>
+    }
+}

@@ -1,0 +1,12 @@
+﻿
+<h1>
+    Bienvenido a tu perfil, @Context.User.Identity.Name!
+</h1>
+<div class="card" style="width: 18rem;">
+    <img src="~/images/@Context.User.FindFirst("Foto").Value" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">@Context.User.Identity.Name - @Context.User.FindFirst("Apellido").Value</h5>
+        <p class="card-text">Email: @Context.User.FindFirst("Email").Value</p>
+        <a asp-controller="Usuarios" asp-action="PedidosUser" class="btn btn-primary">Ver pedidos</a>
+    </div>
+</div>

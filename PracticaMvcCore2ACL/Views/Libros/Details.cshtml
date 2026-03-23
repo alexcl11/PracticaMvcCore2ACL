@@ -1,0 +1,36 @@
+﻿@model PracticaMvcCore2ACL.Models.Libros
+
+@{
+    ViewData["Title"] = "Details";
+    List<Libros> carrito = (List<Libros>)ViewData["CARRITO"];
+}
+
+<h1>Detalles Libro</h1>
+
+<div>
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/@Model.Portada" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Titulo - @Model.Precio €</h5>
+            <p class="card-text">@Model.Editorial</p>
+            <p class="card-text">@Model.Autor</p>
+            @if (carrito == null)
+            {
+                <a asp-controller="Usuarios" asp-action="Carrito" asp-route-id="@Model.IdLibro" class="btn btn-primary">Añadir al Carrito</a>
+            }
+            else
+            {
+                Libros libro = carrito.Find(l => l.IdLibro == Model.IdLibro);
+                if (libro != null)
+                {
+                    <p class="text-secondary">Ya está en el carro!</p>
+                }
+                else
+                {
+                    <a asp-controller="Usuarios" asp-action="Carrito" asp-route-id="@Model.IdLibro" class="btn btn-primary">Añadir al Carrito</a>
+                }
+            }
+        </div>
+    </div>
+</div>
+

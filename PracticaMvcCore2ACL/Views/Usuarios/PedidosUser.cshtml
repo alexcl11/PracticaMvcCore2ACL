@@ -1,0 +1,40 @@
+﻿@model List<VistaPedidos>
+
+<h1>Pedidos de @Context.User.Identity.Name</h1>
+
+<hr />
+
+@if (Model != null)
+{
+    <table class="table table-bordered">
+        <thead>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Titulo Libro</th>
+        <th>Precio</th>
+        <th>Portada</th>
+        <th>Fecha</th>
+        <th>Precio Final</th>
+        </thead>
+        <tbody>
+            @foreach (VistaPedidos pedido in Model)
+            {
+                <tr>
+                    <td>@pedido.Nombre</td>
+                    <td>@pedido.Apellidos</td>
+                    <td>@pedido.Titulo</td>
+                    <td>@pedido.Precio €</td>
+                    <td>
+                        <img src="~/images/@pedido.Portada" style="width: 50px; height:auto" />
+                    </td>
+                    <td>@pedido.Fecha</td>
+                    <td>@pedido.PrecioFinal €</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>No ha realizado pedidos aún</h2>
+}
