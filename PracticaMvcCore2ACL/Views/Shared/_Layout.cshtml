@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@{
+    int contador = 0;
+    if (Context.Session.GetObject<List<Libros>>("CARRITO") != null)
+    {
+        contador = Context.Session.GetObject<List<Libros>>("CARRITO").Count();
+    }
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -30,6 +37,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Libros" asp-action="Index">Libros</a>
                         </li>
                         @await Component.InvokeAsync("MenuGeneros")
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Carrito">Carrito: @contador</a>
+                        </li>
+                        
                         <partial name="_MenuUsuario" />
                     </ul>
                 </div>
